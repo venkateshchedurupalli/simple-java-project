@@ -9,13 +9,14 @@ tools{
   stages{
    stage('First Stage'){
      steps{
-	       git credentialsId: 'GitHub_Cred', url: 'https://github.com/venkateshchedurupalli/simple-java-project.git'}	 
-	 }
+	       checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub_Cred', url: 'https://github.com/venkateshchedurupalli/simple-java-project.git']])
+         }	 
+   }
    
     stage("Build"){
 	     sh 'mvn clean package -Dmaven.test.skip=true'}
 	
-	stage('Java_Version') {
+	steps('Java_Version') {
 	sh 'java -version' }
   
    }
