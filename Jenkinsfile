@@ -14,10 +14,11 @@ tools{
    }
    
     stage("Build"){
+	    steps{
 	     sh 'mvn clean package -Dmaven.test.skip=true'}
-	
-	steps('Java_Version') {
-	sh 'java -version' }
-  
+    }
+	stage("java version") { 
+	  steps { sh 'java -version' }
+	}
    }
 }
