@@ -41,7 +41,7 @@ tools{
 	   stage("deploy into docker container"){
            steps{
                sshagent(['Docker-VM-SSH-LOGIN']) {
-             sh" ssh -o StrictHostKeyChecking=no azureuser@172.16.10.4 docker rm -f javaappcontainer || true"
+             sh " ssh -o StrictHostKeyChecking=no azureuser@172.16.10.4 docker rm -f javaappcontainer || true"
              
              sh "ssh -o StrictHostKeyChecking=no azureuser@172.16.10.4 docker run -d --name javaappcontainer -p 8080:80 venkatesh55/java-app:${buildnumber} "
 
