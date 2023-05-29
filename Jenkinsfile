@@ -22,7 +22,7 @@ tools{
     }
     stage("Bulding Image"){
           steps{
-                sh "docker build -t venkatesh55/java-app .:${buildnumber}"    
+                sh "docker build -t venkatesh55/java-app:${buildnumber} ."    
             }
         }
 	  
