@@ -5,6 +5,7 @@ tools{
    maven 'M2_HOME'
    jdk 'JAVA_HOME'
   }
+	def buildnumber=BUILD_NUMBER()
   
   stages{
    stage('First Stage'){
@@ -17,6 +18,13 @@ tools{
 	    steps{
 	     sh 'mvn clean package -Dmaven.test.skip=true'}
     }
+    stage("Bulding Image"){
+          steps{
+                sh "docker build -t venkatesh55/java-App .:${buildnumber}"    
+            }
+        }
+	  
+	  
 	stage("java version") { 
 	  steps { sh 'java -version' }
 	}
