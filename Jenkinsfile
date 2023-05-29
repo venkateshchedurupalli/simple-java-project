@@ -36,6 +36,18 @@ tools{
                sh "docker push venkatesh55/java-app:${buildnumber}"
            }
        }
+	  
+	  
+	   stage("deploy into docker container"){
+           steps{
+               sshagent(['Docker-server-login-SSH']) {
+             sh" ssh -o StrictHostKeyChecking=no azureuser@192.168.0.4 docker rm -f javaappcontainer || true"
+             
+             sh "ssh -o StrictHostKeyChecking=no azureuser@192.168.0.4 docker run -d --name javaappcontainer -p 8080:80 venkatesh55/java-app:${buildnumber} "
+
+           }
+       }
+   
    
 	  
 	stage("java version") { 
