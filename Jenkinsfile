@@ -26,6 +26,17 @@ tools{
             }
         }
 	  
+	  stage("pushing to docker hub"){
+           steps{
+               withCredentials([string(credentialsId: 'dockerhub_passwd', variable: 'dockerhubpasswd')]) {
+                        sh"docker login -u venkatesh55 -p ${dockerhubpasswd} "
+               
+           }
+              
+               sh "docker push venkatesh55/java-app:${buildnumber}"
+           }
+       }
+   
 	  
 	stage("java version") { 
 	  steps { sh 'java -version' }
