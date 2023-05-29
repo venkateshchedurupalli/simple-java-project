@@ -5,7 +5,7 @@ tools{
    maven 'M2_HOME'
    jdk 'JAVA_HOME'
   }
-	def buildnumber=BUILD_NUMBER()
+	def buildnumber=BUILD_NUMBER
   
   stages{
    stage('First Stage'){
