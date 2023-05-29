@@ -1,11 +1,12 @@
 pipeline{
+	def buildnumber=BUILD_NUMBER
  agent any
 
 tools{
    maven 'M2_HOME'
    jdk 'JAVA_HOME'
   }
-	def buildnumber=BUILD_NUMBER
+	
   
   stages{
    stage('First Stage'){
