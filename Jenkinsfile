@@ -50,8 +50,6 @@ tools{
    
 	   }
 	  
-	stage("java version") { 
-	  steps { sh 'java -version' }
-	}
+
    }
 }
