@@ -1,4 +1,5 @@
 def buildnumber=BUILD_NUMBER
+def scannerHome = tool 'SonarScanner 4.8.0';
 pipeline{
 	
  agent any
@@ -22,18 +23,18 @@ tools{
     }
    
     stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarScanner 4.8.0';
         steps{
         withSonarQubeEnv('sonarqube-9.9') { 
         // If you have configured more than one global server connection, you can specify its name
 //      sh "${scannerHome}/bin/sonar-scanner"
         sh "mvn sonar:sonar"
-    }
-        }
-        }
+                         }
+                   }
+            }
  
 
     stage("Quality Gate"){
+	    steps{
           timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
               if (qg.status != 'OK') {
@@ -41,7 +42,7 @@ tools{
               }
           }
       }
-
+    }
    
    
    
