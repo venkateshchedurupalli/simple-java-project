@@ -1,9 +1,11 @@
-def buildnumber=BUILD_NUMBER
-def scannerHome = tool 'sonar-4.8.0';
+//def buildnumber=BUILD_NUMBER
+
 pipeline{
 	
  agent any
-
+environment {
+	scannerHome = tool 'sonar-4.8.0'
+}
 tools{
    maven 'M2_HOME'
    jdk 'JAVA_HOME'
