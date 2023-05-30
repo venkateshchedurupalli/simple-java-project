@@ -28,7 +28,7 @@ tools{
         steps{
         withSonarQubeEnv('sonarQube-Server') { 
         // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
+          sh "${scannerHome}/bin/sonar-scanner"
         sh "mvn sonar:sonar"
                          }
 		timeout(time: 10, unit: 'MINUTES') {
